@@ -1,6 +1,7 @@
 import React from 'react'
 import Spline from '@splinetool/react-spline'
 import { motion } from 'framer-motion'
+import CardStack from './CardStack'
 
 export default function Hero() {
   return (
@@ -11,12 +12,12 @@ export default function Hero() {
       </div>
 
       {/* 3D Spline Scene */}
-      <div className="absolute inset-0 md:right-0 md:w-2/3 h-full">
+      <div className="absolute inset-0 md:right-0 md:w-1/2 h-full hidden md:block">
         <Spline scene="https://prod.spline.design/41MGRk-UDPKO-l6W/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl w-full px-6 md:px-12 grid md:grid-cols-12 gap-8 items-center">
+      <div className="relative z-10 max-w-7xl w-full px-6 md:px-12 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -51,7 +52,9 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-        <div className="md:col-span-6"></div>
+        <div className="md:col-span-6">
+          <CardStack />
+        </div>
       </div>
 
       {/* Glass gradient overlay to add depth without blocking pointer events */}

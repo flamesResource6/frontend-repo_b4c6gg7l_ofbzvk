@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from './components/Hero'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
+import VisualShowcase from './components/VisualShowcase'
 
 function App() {
+  useEffect(() => {
+    // Smooth scrolling for anchor links
+    const handler = (e) => {
+      const a = e.target.closest('a[href^="#"]')
+      if (!a) return
+      const id = a.getAttribute('href').slice(1)
+      const el = document.getElementById(id)
+      if (!el) return
+      e.preventDefault()
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    document.addEventListener('click', handler)
+    return () => document.removeEventListener('click', handler)
+  }, [])
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       {/* Nav */}
@@ -13,6 +29,7 @@ function App() {
           <div className="mt-6 flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md px-4 py-3">
             <a href="#home" className="font-semibold tracking-tight text-white">JA</a>
             <nav className="hidden md:flex items-center gap-6 text-sm text-slate-300">
+              <a href="#work" className="hover:text-white transition-colors">Work</a>
               <a href="#experience" className="hover:text-white transition-colors">Experience</a>
               <a href="#skills" className="hover:text-white transition-colors">Skills</a>
               <a href="#contact" className="hover:text-white transition-colors">Contact</a>
@@ -24,6 +41,7 @@ function App() {
 
       <main>
         <Hero />
+        <VisualShowcase />
         <Experience />
         <Skills />
         <Contact />
